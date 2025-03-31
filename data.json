@@ -1,0 +1,10 @@
+{
+    "users": [
+      { "id": 1, "name": "Alice", "points": 1000 },
+      { "id": 2, "name": "Bob", "points": 750 }
+    ],
+    "constellations": [
+      { "name": "Orion", "foundBy": [1, 2] }
+    ]
+  }
+  
