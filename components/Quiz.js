@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { 
   View, 
   StyleSheet, 
@@ -6,7 +7,7 @@ import {
   Text, 
   TouchableOpacity, 
   ScrollView,
-  Image, 
+  TextInput,
   Dimensions
 } from "react-native";
 const starry_background = require("@/assets/images/starry_background.jpg");
@@ -41,9 +42,30 @@ const questions = [
   },
 ];
 
+const saveUserScore = async (points, userName) => {
+  try {
+    const storedUsers = await AsyncStorage.getItem('users');
+    let users = storedUsers ? JSON.parse(storedUsers) : [];
+
+    users.push({
+      id: Date.now(),
+      name: userName || "Anonymous",
+      points,
+    });
+
+    users.sort((a, b) => b.points - a.points);
+
+    await AsyncStorage.setItem('users', JSON.stringify(users));
+  } catch (error) {
+    console.error("Error saving user score:", error);
+  }
+};
+
 const Quiz = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [score, setScore] = useState(0);
+  const [userName, setUserName] = useState("");
 
   const handleAnswerSelect = (questionIndex, option) => {
     setSelectedAnswers((prev) => ({
@@ -53,17 +75,33 @@ const Quiz = () => {
   };
 
   const handleSubmit = () => {
+    let total = 0;
+    questions.forEach((q, index) => {
+      if (selectedAnswers[index] === q.correct) {
+        total += 1;
+      }
+    });
+
+    setScore(total);
     setSubmitted(true);
+    saveUserScore(total, userName);
   };
+
   return (
     <View style={styles.container}>
       <ImageBackground source={starry_background} style={styles.backgroundPic}>
         <View style={styles.overlay}>
-          <ScrollView 
-            contentContainerStyle={styles.scrollContainer} 
-            keyboardShouldPersistTaps="handled"
-          >
+          <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
             <Text style={styles.headerText}>Stellar Astronomy Quiz</Text>
+            
+            <TextInput
+              placeholder="Enter your name"
+              placeholderTextColor="#bbb"
+              value={userName}
+              onChangeText={setUserName}
+              style={styles.textInput}
+            />
+
             {questions.map((q, index) => (
               <View key={index} style={styles.questionCard}>
                 <Text style={styles.questionText}>{q.question}</Text>
@@ -73,9 +111,9 @@ const Quiz = () => {
 
                   if (submitted) {
                     if (option === q.correct) {
-                      buttonStyle.push(styles.correctOption); // ✅ Green if correct
+                      buttonStyle.push(styles.correctOption);
                     } else if (selectedAnswers[index] === option) {
-                      buttonStyle.push(styles.incorrectOption); // ❌ Red if incorrect
+                      buttonStyle.push(styles.incorrectOption);
                     }
                   } else if (selectedAnswers[index] === option) {
                     buttonStyle.push(styles.selectedOption);
@@ -95,13 +133,12 @@ const Quiz = () => {
               </View>
             ))}
 
-            {/* Submit Button */}
             {!submitted ? (
               <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
                 <Text style={styles.submitText}>Submit</Text>
               </TouchableOpacity>
             ) : (
-              <Text style={styles.resultText}>Quiz Submitted!</Text>
+              <Text style={styles.resultText}>Quiz Submitted! You scored {score} point(s)</Text>
             )}
           </ScrollView>
         </View>
@@ -111,20 +148,11 @@ const Quiz = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-  },
-  backgroundPic: {
-    width: width,
-    height: height,
-    resizeMode: "cover",
-  },
-  overlay: {
-    flex: 1,
-    paddingTop: 50, 
-  },
+  container: { flex: 1 },
+  backgroundPic: { width, height, resizeMode: "cover" },
+  overlay: { flex: 1, paddingTop: 50 },
   scrollContainer: {
-    flexGrow: 1, 
+    flexGrow: 1,
     alignItems: "center",
     paddingBottom: 20,
   },
@@ -134,6 +162,15 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     marginBottom: 20,
+  },
+  textInput: {
+    width: "90%",
+    backgroundColor: "#222",
+    color: "#fff",
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
+    fontSize: 16,
   },
   questionCard: {
     backgroundColor: "#333",
@@ -156,19 +193,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
-  optionText: {
-    color: "white",
-    fontSize: 16,
-  },
-  selectedOption: {
-    backgroundColor: "#6423a1", // Purple for selected (before submission)
-  },
-  correctOption: {
-    backgroundColor: "green", // Green for correct answers
-  },
-  incorrectOption: {
-    backgroundColor: "red", // Red for incorrect answers
-  },
+  optionText: { color: "white", fontSize: 16 },
+  selectedOption: { backgroundColor: "#6423a1" },
+  correctOption: { backgroundColor: "green" },
+  incorrectOption: { backgroundColor: "red" },
   submitButton: {
     backgroundColor: "#6423a1",
     padding: 15,
@@ -190,7 +218,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "center",
     marginBottom: 30,
-
   },
 });
 
