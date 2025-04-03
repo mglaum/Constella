@@ -5,11 +5,13 @@ import StarMap from "@/components/RenderStarchart";
 import StarChart from "@/components/StarChart";
 // import RenderStarchart 
 import TestWebView from "@/components/TestComponent"; // Fallback for testing in Expo Go
+import StarChartScreen from "@/components/StarchartHeader";
 
 export default function ShowStarChart() {
   return (
     <View style={{ flex: 1 }}>
-      <StarChart />
+      <StarChartScreen />
+      {/* <StarChart /> */}
       {/* <TestWebView/> */}
       {/* <StarMap/> */}
       {/* <RenderStarchart /> */}
