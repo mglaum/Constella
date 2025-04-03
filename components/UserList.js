@@ -26,7 +26,7 @@ const UserList = () => {
     <View style={styles.container}>
       <ImageBackground source={starry_background} style={styles.backgroundPic}>
         <View style={styles.overlay}>
-          <Text style={styles.title}>User Leaderboard</Text>
+          <Text style={styles.title}>Weekly Leaderboard</Text>
           <FlatList
             data={users}
             keyExtractor={(item) => item.id.toString()}

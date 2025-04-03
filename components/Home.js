@@ -12,7 +12,8 @@ const formattedDate = today.toLocaleDateString('en-US', options);
         <View style={styles.container}>
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.title}>Good Afternoon, User! 💫</Text>
+            <Text style={styles.title}>Good Afternoon, </Text>
+            <Text style={styles.title}>User! 💫</Text>
           </View>
     
           {/* Scrollable Content */}
@@ -75,7 +76,7 @@ const formattedDate = today.toLocaleDateString('en-US', options);
         marginBottom: 20,
       },
       title: {
-        fontSize: 24,
+        fontSize: 40,
         fontWeight: 'bold',
         color: 'white',
         fontFamily: 'VarelaRound', // Ensure consistent font
