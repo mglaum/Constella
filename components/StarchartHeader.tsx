@@ -22,7 +22,7 @@ const StarChartScreen = () => {
     <View style={styles.container}>
       
       <Text style={styles.header}>
-        Stars Visible from Gainesville, Florida at {currentTime}
+        Stars Above Gainesville, Florida at {currentTime}
       </Text>
       <View style={styles.starChart}>
         <StarChart />

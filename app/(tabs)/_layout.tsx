@@ -58,6 +58,12 @@ export default function TabLayout() {
         title: 'Quiz',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}/>
+        <Tabs.Screen
+        name="trip"
+        options={{
+        title: 'Trip Planning',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
+        }}/>
     </Tabs>
     
   );
