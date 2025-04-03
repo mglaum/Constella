@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     marginBottom: 20,
+    fontFamily: "VarelaRound", // Added font family
   },
   userCard: {
     backgroundColor: "#6423a1",
@@ -71,15 +72,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#fff",
+    fontFamily: "VarelaRound", // Added font family
   },
   points: {
     fontSize: 16,
     color: "#FFD700",
     marginTop: 5,
+    fontFamily: "VarelaRound", // Added font family
   },
   listContent: {
     paddingBottom: 30,
   },
 });
+
 
 export default UserList;

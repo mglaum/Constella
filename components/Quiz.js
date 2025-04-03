@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     marginBottom: 20,
+    fontFamily: "VarelaRound",  // Add this line
   },
   questionCard: {
     backgroundColor: "#333",
@@ -212,6 +213,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+    fontFamily: "VarelaRound",  // Add this line
   },
   optionButton: {
     backgroundColor: "#444",
@@ -221,7 +223,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
-  optionText: { color: "white", fontSize: 16 },
+  optionText: { 
+    color: "white", 
+    fontSize: 16,
+    fontFamily: "VarelaRound",  // Add this line
+  },
   selectedOption: { backgroundColor: "#6423a1" },
   correctOption: { backgroundColor: "green" },
   incorrectOption: { backgroundColor: "red" },
@@ -238,6 +244,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "VarelaRound",  // Add this line
   },
   resultText: {
     color: "white",
@@ -246,6 +253,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "center",
     marginBottom: 30,
+    fontFamily: "VarelaRound",  // Add this line
   },
   modalOverlay: {
     flex: 1,
@@ -265,12 +273,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 10,
+    fontFamily: "VarelaRound",  // Add this line
   },
   modalScore: {
     color: "#FFD700",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 15,
+    fontFamily: "VarelaRound",  // Add this line
   },
   textInput: {
     width: "100%",
@@ -280,6 +290,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 20,
     fontSize: 16,
+    fontFamily: "VarelaRound",  // Add this line
   },
   modalButtons: {
     flexDirection: "row",
@@ -295,5 +306,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
 });
+
 
 export default Quiz;
