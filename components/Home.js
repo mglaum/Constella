@@ -1,10 +1,22 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, TextInput, Image, StyleSheet } from 'react-native';
+import { useNavigation } from 'expo-router';
 
 const Home = () => {
     const today = new Date();
-const options = { month: 'long', day: 'numeric' };
-const formattedDate = today.toLocaleDateString('en-US', options);
+  const options = { month: 'long', day: 'numeric' };
+  const formattedDate = today.toLocaleDateString('en-US', options);
+  const moon_pic = require("@/assets/images/moon.jpg");
+    const navigation = useNavigation();
+    const handleNavigateStarChart = () => {
+        navigation.navigate('starchart'); 
+    };
+    const handleNavigateLessons = () => {
+        navigation.navigate('lessons'); 
+    };
+    const handleNavigateTrip = () => {
+      navigation.navigate('trip'); 
+  };
 
 
 
@@ -33,19 +45,38 @@ const formattedDate = today.toLocaleDateString('en-US', options);
               </TouchableOpacity> */}
             </View>
             <View style={styles.row}>
-  <View style={styles.halfCard}>
-    <Text style={styles.cardTitle}>Visible Tonight 🔭</Text>
-    <Text style={styles.cardText}>See what celestial bodies are visible from Gainesville.</Text>
-    <TouchableOpacity style={styles.halfButton}>
-                <Text style={styles.buttonText}>View Star Chart</Text>
-              </TouchableOpacity>
-  </View>
+              <View style={styles.halfCard}>
+                <Text style={styles.cardTitle}>Visible Tonight 🔭</Text>
+                <Text style={styles.cardText}>See what celestial bodies are visible from Gainesville.</Text>
+                <TouchableOpacity style={styles.halfButton}>
+                            <Text style={styles.buttonText} onPress={handleNavigateStarChart}>View Star Chart</Text>
+                          </TouchableOpacity>
+              </View>
 
-  <View style={styles.halfCard}>
-    <Text style={styles.cardTitle}>3 Day Streak! 🔥</Text>
-    <Text style={styles.cardText}>Complete today's lesson and quiz to continue your streak.</Text>
-  </View>
-</View>
+              <View style={styles.halfCard}>
+                <Text style={styles.cardTitle}>3 Day Streak! 🔥</Text>
+                <Text style={styles.cardText}>Complete today's lesson and quiz to continue your streak.</Text>
+                <TouchableOpacity style={styles.halfButton}onPress={handleNavigateLessons}>
+                            <Text style={styles.buttonText}>Go to Lessons</Text>
+                          </TouchableOpacity>
+              </View>
+            </View>
+            {/* Card with Image */}
+      <View style={styles.card}>
+        {/* Image inside the card */}
+        <Image
+          source={moon_pic} // Replace with your image URL or local image
+          style={styles.image}
+          resizeMode="cover" // Adjust image to fill the card
+        />
+      </View>
+      <View style={styles.card}>
+            <Text style={styles.cardTitle}>Plan a Stargazing Trip! 🌠</Text>
+            <Text style={styles.cardText}>Invite friends in Gainesville to stargaze with you!</Text>
+            <TouchableOpacity style={styles.button} onPress={handleNavigateStarChart}>
+                            <Text style={styles.buttonText} onPress={handleNavigateStarChart}>Plan a Trip</Text>
+                          </TouchableOpacity>
+            </View>
 
     
             {/* Add Friend Section */}
@@ -131,11 +162,16 @@ const formattedDate = today.toLocaleDateString('en-US', options);
         justifyContent: 'center',
       },
       image: {
-        width: 100,
-        height: 150,
+        // width: 100,
+        // height: 150,
+        width: '80%', // Make the image fill the card width
+        height: 195, // Set a fixed height for the image
         margin: 5,
         borderRadius: 10,
         backgroundColor: '#333', // Placeholder color
+        alignItems: 'center', // Center the image in the card
+        justifyContent: 'center', // Ensure the image is centered
+        alignSelf: 'center', // Center the image in the card
       },
       input: {
         backgroundColor: '#333',

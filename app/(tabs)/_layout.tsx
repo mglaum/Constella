@@ -26,6 +26,14 @@ export default function TabLayout() {
           default: {},
         }),
       }}>
+        <Tabs.Screen
+  name="stellarastrolesson"
+  options={{
+    title: 'Stellar Astronomy',
+    tabBarStyle: { display: 'none' },  // Hides it from the bottom navbar
+    tabBarButton: () => null,          // Ensure it doesn't show any icon/button
+  }}
+/>
       <Tabs.Screen
         name="index"
         options={{
@@ -41,11 +49,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="leaderboard"
+        name="lessons"
         options={{
-          title: 'Leaderboard',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="trophy.fill" color={color} />,
+        title: 'Lessons',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
         }}/>
+      
         <Tabs.Screen
         name="starchart"
         options={{
@@ -53,17 +62,35 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
         }}/>
         <Tabs.Screen
-        name="quiz"
-        options={{
-        title: 'Quiz',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}/>
-        <Tabs.Screen
         name="trip"
         options={{
         title: 'Trip Planning',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
         }}/>
+        <Tabs.Screen
+        name="leaderboard"
+        options={{
+          title: 'Leaderboard',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="trophy.fill" color={color} />,
+        }}/>
+        {/* <Tabs.Screen
+        name="quiz"
+        options={{
+        title: 'Quiz',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        }}/> */}
+        
+        
+        
+<Tabs.Screen
+  name="quiz"
+  options={{
+    title: 'Quiz',
+    tabBarStyle: { display: 'none' },  // Hides it from the bottom navbar
+    tabBarButton: () => null,          // Ensure it doesn't show any icon/button
+  }}
+/>
+
     </Tabs>
     
   );

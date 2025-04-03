@@ -8,6 +8,7 @@ import UserList  from '@/components/UserList.js';
 import StarChart from '@/components/StarChart.js';
 import Home from '@/components/Home.js'; // Ensure this is the correct path to your Home component
 import React from 'react';
+import TopBar from '@/components/TopBar'; // Ensure this is the correct path to your TopBar component
 
 export default function HomeScreen() {
   return (
