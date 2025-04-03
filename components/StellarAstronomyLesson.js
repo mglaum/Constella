@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from 'expo-router';
 
 const StellarAstronomyLesson = () => {
   const [lessonProgress, setLessonProgress] = useState(0); // To track user's progress
   
   const handleNext = () => {
     setLessonProgress(prevProgress => prevProgress + 1);
+  };
+  const navigation = useNavigation();
+  const handleGoBack = () => {
+    navigation.navigate('quiz'); 
   };
 
   return (
@@ -67,7 +72,7 @@ const StellarAstronomyLesson = () => {
           <Text style={styles.blockTitle}>Lesson Completed!</Text>
           <Text style={styles.blockText}>You've completed the Stellar Astronomy lesson. Great job!</Text>
           <TouchableOpacity style={[styles.button, styles.completedButton]}>
-            <Text style={styles.buttonText}>Take Quiz</Text>
+            <Text style={styles.buttonText} onPress={handleGoBack}>Take Quiz</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -87,11 +92,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 10,
+    fontFamily: 'VarelaRound',
   },
   lessonDescription: {
     color: 'white',
     marginBottom: 20,
     fontSize: 16,
+    fontFamily: 'VarelaRound',
   },
   progressBar: {
     height: 10,
@@ -108,6 +115,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     marginBottom: 20,
+    fontFamily: 'VarelaRound',
   },
   lessonBlock: {
     backgroundColor: '#1e1e1e',
@@ -120,11 +128,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 10,
+    fontFamily: 'VarelaRound',
   },
   blockText: {
     color: 'white',
     fontSize: 16,
     marginBottom: 20,
+    fontFamily: 'VarelaRound',
   },
   button: {
     backgroundColor: 'purple',
@@ -138,6 +148,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
+    fontFamily: 'VarelaRound',
   },
 });
 

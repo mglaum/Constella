@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { useNavigation } from 'expo-router';
 
 const lessons = [
   { id: 1, title: 'Introduction to the Night Sky', description: 'Learn the basics of stargazing and constellations.', status: 'completed' },
@@ -10,6 +11,11 @@ const lessons = [
 ];
 
 const Lessons = () => {
+    const navigate = useNavigation();
+    const handleNavigate = () => {
+            navigate.navigate('stellarastrolesson'); 
+    };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Lessons 📚</Text>
@@ -30,7 +36,7 @@ const Lessons = () => {
               style={[
                 styles.button,
                 lesson.status === 'completed' && styles.completedButton
-              ]}
+              ] } onPress={handleNavigate}
               disabled={lesson.status === 'completed'}
             >
               <Text style={styles.buttonText}>
@@ -60,6 +66,7 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingHorizontal: 20,
     marginBottom: 20,
+    fontFamily: 'VarelaRound',
   },
   scrollContent: {
     paddingHorizontal: 20,
@@ -83,10 +90,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 5,
+    fontFamily: 'VarelaRound',
   },
   cardText: {
     color: 'white',
     marginBottom: 10,
+    fontFamily: 'VarelaRound',
   },
   button: {
     backgroundColor: 'purple',
@@ -99,6 +108,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
+    fontFamily: 'VarelaRound', 
   },
 });
 

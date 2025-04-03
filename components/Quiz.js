@@ -13,8 +13,11 @@ import {
   Modal,
 } from "react-native";
 
+import { useNavigation } from 'expo-router'; // Updated import for navigation
+
 const starry_background = require("@/assets/images/starry_background.jpg");
 const { width, height } = Dimensions.get("window");
+
 
 const questions = [
   {
@@ -63,6 +66,7 @@ const saveUserScore = async (points, userName) => {
 };
 
 const Quiz = () => {
+  const navigation = useNavigation();
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
@@ -100,6 +104,7 @@ const Quiz = () => {
   const handleSave = () => {
     saveUserScore(score, userName);
     resetQuiz();
+    navigation.navigate('leaderboard'); 
   };
 
   const handleRetake = () => {
