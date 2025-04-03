@@ -63,6 +63,7 @@ const Home = () => {
             </View>
             {/* Card with Image */}
       <View style={styles.card}>
+      <Text style={styles.cardTitle}>Tonight's Moon Phase</Text>
         {/* Image inside the card */}
         <Image
           source={moon_pic} // Replace with your image URL or local image
@@ -73,8 +74,8 @@ const Home = () => {
       <View style={styles.card}>
             <Text style={styles.cardTitle}>Plan a Stargazing Trip! 🌠</Text>
             <Text style={styles.cardText}>Invite friends in Gainesville to stargaze with you!</Text>
-            <TouchableOpacity style={styles.button} onPress={handleNavigateStarChart}>
-                            <Text style={styles.buttonText} onPress={handleNavigateStarChart}>Plan a Trip</Text>
+            <TouchableOpacity style={styles.button} onPress={handleNavigateTrip}>
+                            <Text style={styles.buttonText} onPress={handleNavigateTrip}>Plan a Trip</Text>
                           </TouchableOpacity>
             </View>
 
