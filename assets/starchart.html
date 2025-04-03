@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Map - Gainesville, FL</title>
+  <script>
+    console.log("Trying to load VirtualSky script...");
+  </script>
+  <script src="https://unpkg.com/virtualsky@0.7.7/virtualsky.min.js"></script>
+
+
+  <style>
+    body { margin: 0; overflow: hidden; background-color: black; }
+    #starmap { width: 100vw; height: 100vh; color: white; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <div id="starmap">Loading VirtualSky...</div>
+  <script>
+    function initializeVirtualSky() {
+      console.log("Checking VirtualSky...");
+      if (typeof VirtualSky !== "undefined") {
+        console.log("✅ VirtualSky is available! Initializing...");
+        document.getElementById("starmap").innerText = ""; // Clear text
+        VirtualSky.create('starmap', {
+          projection: "stereo",
+          showstars: true,
+          showconstellations: true,
+          latitude: 29.6516,
+          longitude: -82.3248
+        });
+      } else {
+        console.error("❌ VirtualSky is NOT available! Retrying...");
+        setTimeout(initializeVirtualSky, 1000);
+      }
+    }
+
+    setTimeout(initializeVirtualSky, 1000);
+  </script>
+</body>
+</html>

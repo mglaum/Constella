@@ -1,17 +1,18 @@
-import { View, Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import UserList  from '@/components/UserList.js';
-import StarChart from '@/components/StarChart.js';
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import { View } from "react-native";
+import { WebView } from "react-native-webview";
+import StarMap from "@/components/RenderStarchart";
+import StarChart from "@/components/StarChart";
+// import RenderStarchart 
+import TestWebView from "@/components/TestComponent"; // Fallback for testing in Expo Go
 
 export default function ShowStarChart() {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <StarChart />
+      {/* <TestWebView/> */}
+      {/* <StarMap/> */}
+      {/* <RenderStarchart /> */}
     </View>
   );
 }
