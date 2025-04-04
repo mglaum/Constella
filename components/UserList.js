@@ -10,6 +10,8 @@ const UserList = () => {
 
   const loadUsers = async () => {
     try {
+      // AsyncStorage.removeItem('users');
+
       const storedUsers = await AsyncStorage.getItem('users');
       const users = storedUsers ? JSON.parse(storedUsers) : [];
       setUsers(users);
